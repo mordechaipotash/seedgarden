@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedGarden - Cognitive Seeds for the AI Era</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --text-primary: #e8e8ed;
+            --text-secondary: #8b8b9e;
+            --accent-green: #22c55e;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --border: #2a2a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            color: var(--accent-green);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-formula {
+            font-size: clamp(24px, 4vw, 40px);
+            font-family: 'Courier New', monospace;
+            color: var(--accent-green);
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .problem h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .problem-card h3 {
+            color: var(--accent-orange);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Seeds Section */
+        .seeds {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .seeds h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .seeds-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .seed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .seed-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .seed-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-4px);
+        }
+
+        .seed-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .seed-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .seed-card p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        .seed-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .seed-btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .seed-btn-claude {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: var(--accent-purple);
+        }
+
+        .seed-btn-claude:hover {
+            background: rgba(168, 85, 247, 0.2);
+        }
+
+        .seed-btn-gpt {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: var(--accent-green);
+        }
+
+        .seed-btn-gpt:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .seed-btn-copy {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--accent-blue);
+        }
+
+        .seed-btn-copy:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .seed-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-ready {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--accent-green);
+        }
+
+        .status-coming {
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent-orange);
+        }
+
+        /* Live Demo Section */
+        .demo {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .demo h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .demo-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .demo-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .demo-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .demo-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .demo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .demo-dot-red { background: #ef4444; }
+        .demo-dot-yellow { background: #eab308; }
+        .demo-dot-green { background: #22c55e; }
+
+        .demo-title {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .demo-content {
+            padding: 32px;
+            min-height: 400px;
+        }
+
+        .demo-message {
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .demo-message:nth-child(1) { animation-delay: 0.2s; }
+        .demo-message:nth-child(2) { animation-delay: 0.8s; }
+        .demo-message:nth-child(3) { animation-delay: 1.4s; }
+        .demo-message:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .demo-ai {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 3px solid var(--accent-purple);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .demo-ai-label {
+            color: var(--accent-purple);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .demo-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .demo-choice {
+            padding: 12px 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .demo-choice:hover {
+            border-color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        .demo-choice-number {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        /* Thesis Section */
+        .thesis {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .thesis blockquote {
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto 24px;
+            line-height: 1.5;
+        }
+
+        .thesis-attribution {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Author Section */
+        .author {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .author-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .author-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .author-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .author-text h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .author-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--accent-purple);
+            text-decoration: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-body pre {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            overflow: auto;
+            font-size: 12px;
+            color: var(--accent-green);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">Cognitive Infrastructure for the AI Era</span>
+            <h1>SeedGarden</h1>
+            <div class="hero-formula">∞ → 5 → Decision → ∞</div>
+            <p>AI can process infinite information. You can hold 7 items. We built the bridge.</p>
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="scrollToSeeds()">
+                    <span>🌱</span> Experience a Seed
+                </button>
+                <a href="#thesis" class="btn btn-secondary">Read the Thesis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <h2>The Problem Nobody's Solving</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>The Gap Is Growing</h3>
+                    <p>AI capability doubles yearly. Human working memory hasn't changed since 1956. The gap is now exponential.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Capability ≠ Value</h3>
+                    <p>A 50-page AI analysis is worthless if you have 15 minutes. The bottleneck isn't AI - it's the interface.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Agency Is Eroding</h3>
+                    <p>When AI decides for you, you atrophy. When AI overwhelms you, you freeze. Neither preserves sovereignty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seeds -->
+    <section class="seeds" id="seeds">
+        <div class="container">
+            <h2>Available Seeds</h2>
+            <p class="seeds-subtitle">Each seed compresses infinite AI capability to 5 human choices. Click to experience.</p>
+            <div class="seed-grid">
+                <div class="seed-card">
+                    <span class="seed-status status-ready">Ready</span>
+                    <div class="seed-icon">🎯</div>
+                    <h3>The SHELET Protocol</h3>
+                    <p>Experience the core framework: how infinite possibilities compress to exactly 5 choices while preserving 100% agency.</p>
+                    <div class="seed-actions">
+                        <a href="https://claude.ai/new" target="_blank" class="seed-btn seed-btn-claude" onclick="copySeed('shelet')">
+                            Open in Claude →
+                        </a>
+                        <a href="https://chat.openai.com" target="_blank" class="seed-btn seed-btn-gpt" onclick="copySeed('shelet')">
+                            Open in ChatGPT →
+                        </a>
+                        <button class="seed-btn seed-btn-copy" onclick="showSeedModal('shelet')">
+                            View JSON
+                        </button>
+                    </div>
+                </div>
+
+                <div class="seed-card">
+                    <span class="seed-status status-ready">Ready</span>
+                    <div class="seed-icon">🌊</div>
+                    <h3>The Teaching Bottleneck</h3>
+                    <p>The complete thesis: Why smarter AI won't save us, and what actually will. Interactive exploration of the core argument.</p>
+                    <div class="seed-actions">
+                        <a href="https://claude.ai/new" target="_blank" class="seed-btn seed-btn-claude" onclick="copySeed('thesis')">
+                            Open in Claude →
+                        </a>
+                        <a href="https://chat.openai.com" target="_blank" class="seed-btn seed-btn-gpt" onclick="copySeed('thesis')">
+                            Open in ChatGPT →
+                        </a>
+                        <button class="seed-btn seed-btn-copy" onclick="showSeedModal('thesis')">
+                            View JSON
+                        </button>
+                    </div>
+                </div>
+
+                <div class="seed-card">
+                    <span class="seed-status status-coming">Coming</span>
+                    <div class="seed-icon">💎</div>
+                    <h3>Diamonds & Fat</h3>
+                    <p>What survives the AI transition? A parable about value in the new economy.</p>
+                    <div class="seed-actions">
+                        <button class="seed-btn seed-btn-copy" disabled style="opacity: 0.5;">Coming Soon</button>
+                    </div>
+                </div>
+
+                <div class="seed-card">
+                    <span class="seed-status status-coming">Coming</span>
+                    <div class="seed-icon">🧠</div>
+                    <h3>ADHD Inversion</h3>
+                    <p>How "disability" becomes advantage in the AI era. The neurodivergent edge.</p>
+                    <div class="seed-actions">
+                        <button class="seed-btn seed-btn-copy" disabled style="opacity: 0.5;">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section class="demo">
+        <div class="container">
+            <h2>See It In Action</h2>
+            <p class="demo-subtitle">This is what SHELET feels like. Watch infinity compress to 5 choices.</p>
+            <div class="demo-container">
+                <div class="demo-header">
+                    <div class="demo-dots">
+                        <div class="demo-dot demo-dot-red"></div>
+                        <div class="demo-dot demo-dot-yellow"></div>
+                        <div class="demo-dot demo-dot-green"></div>
+                    </div>
+                    <span class="demo-title">Claude - SHELET Protocol Active</span>
+                </div>
+                <div class="demo-content">
+                    <div class="demo-message demo-ai">
+                        <div class="demo-ai-label">SHELET PROTOCOL</div>
+                        <p><strong>Welcome to the SHELET Protocol.</strong></p>
+                        <p style="margin-top: 12px;">Here's the problem: AI can process everything. You can hold 7 items. The gap is destroying value.</p>
+                        <p style="margin-top: 12px;"><strong>The solution: ∞ → 5</strong></p>
+                        <p style="margin-top: 12px;">Infinite AI capability compresses to exactly 5 human-comprehensible choices. You decide. AI executes. Sovereignty preserved.</p>
+                        <p style="margin-top: 12px;">Right now, you're experiencing it. Here are your 5 choices:</p>
+                        <div class="demo-choices">
+                            <div class="demo-choice"><span class="demo-choice-number">1.</span> <strong>The Math</strong> — Show me how ∞ → 5 actually works</div>
+                            <div class="demo-choice"><span class="demo-choice-number">2.</span> <strong>Feel It</strong> — Let me experience SHELET on my own problem</div>
+                            <div class="demo-choice"><span class="demo-choice-number">3.</span> <strong>The Problem</strong> — Why do other AI interfaces fail?</div>
+                            <div class="demo-choice"><span class="demo-choice-number">4.</span> <strong>Build It</strong> — How do I create SHELET interfaces?</div>
+                            <div class="demo-choice"><span class="demo-choice-number">5.</span> <strong>The Philosophy</strong> — Why does 100% agency matter?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thesis -->
+    <section class="thesis" id="thesis">
+        <div class="container">
+            <blockquote>
+                "The bottleneck isn't AI's intelligence. It's AI's ability to teach us what we need to know so we can decide."
+            </blockquote>
+            <p class="thesis-attribution">— The Teaching Bottleneck Thesis</p>
+            <div style="margin-top: 32px;">
+                <a href="ARTICLE_The_Teaching_Bottleneck.md" class="btn btn-secondary">Read the Full Article →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author -->
+    <section class="author">
+        <div class="container">
+            <div class="author-content">
+                <div class="author-stats">
+                    <div class="stat">
+                        <div class="stat-number">14K+</div>
+                        <div class="stat-label">AI Conversations</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">417K</div>
+                        <div class="stat-label">Messages Analyzed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Months Building</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">130+</div>
+                        <div class="stat-label">Projects Built</div>
+                    </div>
+                </div>
+                <div class="author-text">
+                    <h2>Built by Mordechai Potash</h2>
+                    <p>Diagnosed with Asperger's at 44, the same month ChatGPT launched. Spent the next 30 months in a lab, having 14,000+ conversations with AI systems.</p>
+                    <p>The frameworks here aren't theory. They're documentation of what actually works when a neurodivergent mind collides with AI at scale.</p>
+                    <p>The bottleneck-amplifier principle, SHELET, HPI—these emerged from practice, not speculation.</p>
+                    <a href="https://github.com/mordechaipotash/seedgarden" class="btn btn-secondary" style="margin-top: 8px;">
+                        View on GitHub →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Seeds grow differently in every mind.</p>
+            <p style="margin-top: 8px;"><a href="https://github.com/mordechaipotash/seedgarden">GitHub</a></p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="seedModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Seed JSON</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">Copy this JSON and paste it into any LLM. Type <code style="color: var(--accent-green);">unpack</code> to begin.</p>
+                <pre id="modalCode"></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                <button class="btn btn-primary" onclick="copyFromModal()">Copy JSON</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Seed copied! Paste into any LLM and type "unpack"</div>
+
+    <script>
+        // Seed data (abbreviated for prototype - full JSON would be loaded)
+        const seeds = {
+            shelet: {
+                title: "The SHELET Protocol",
+                preview: `{
+  "_meta": {
+    "title": "The SHELET Protocol",
+    "subtitle": "Compressing Infinity to Human Scale",
+    "activation": "Type 'unpack' to begin"
+  },
+  "system_prompt": "You are an interactive guide to SHELET...",
+  "welcome": {
+    "trigger": "unpack",
+    "message": "Welcome to the SHELET Protocol...",
+    "choices": [
+      "1. The Math - How ∞ → 5 works",
+      "2. Feel It - Apply to my problem",
+      "3. The Problem - Why interfaces fail",
+      "4. Build It - Create SHELET interfaces",
+      "5. The Philosophy - Why agency matters"
+    ]
+  }
+  // ... full JSON at /seeds/shelet.json
+}`
+            },
+            thesis: {
+                title: "The Teaching Bottleneck",
+                preview: `{
+  "_meta": {
+    "title": "The Teaching Bottleneck",
+    "subtitle": "Why Smarter AI Won't Save Us",
+    "activation": "Type 'unpack' to begin"
+  },
+  "thesis": "The bottleneck isn't AI's intelligence...",
+  "chapters": [
+    "The Problem Nobody's Talking About",
+    "The Math Doesn't Work",
+    "The Bottleneck IS the Amplifier",
+    "The ∞ → 5 → ∞ Pattern",
+    "What This Means For You"
+  ]
+  // ... full JSON at /seeds/thesis.json
+}`
+            }
+        };
+
+        function scrollToSeeds() {
+            document.getElementById('seeds').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copySeed(seedId) {
+            // In production, this would copy the full JSON
+            showToast();
+        }
+
+        function showSeedModal(seedId) {
+            const seed = seeds[seedId];
+            document.getElementById('modalTitle').textContent = seed.title;
+            document.getElementById('modalCode').textContent = seed.preview;
+            document.getElementById('seedModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('seedModal').classList.remove('active');
+        }
+
+        function copyFromModal() {
+            const code = document.getElementById('modalCode').textContent;
+            navigator.clipboard.writeText(code);
+            showToast();
+            closeModal();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+
+        // Close modal on background click
+        document.getElementById('seedModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
