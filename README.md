@@ -111,3 +111,7 @@ The frameworks aren't theory. They're documentation of what actually works.
 ---
 
 *Seeds grow differently in every mind.*
+
+---
+
+*Built by [Mordechai Potash](https://github.com/mordechaipotash)*
